@@ -1,0 +1,7 @@
+pokemon[#id, numero_pokedex, nombre, primer_tipo, segundo_tipo, generacion, tiene_evolucion, descripcion, -id_habilidad, -id_region, -id_evoluciona_de]
+movimiento[#id, nombre, tipo, clase, potencia, precision, pp, efecto]
+habilidad[#id, nombre, descripcion, es_unitaria, es_doble, es_oculta, afecta_a, categoria_efecto]
+ruta[#id, nombre, tiene_agua, clima_primario, cantidad_entrenadores, entorno, nivel_min, nivel_max, -id_region]
+region[#id, nombre, iniciales, villanos, profesor, videojuego_origen, fecha_lanzamiento, tiene_concursos]
+pokemon_movimiento[#id, -id_pokemon, -id_movimiento]
+pokemon_ruta[#id, -id_pokemon, -id_ruta]
