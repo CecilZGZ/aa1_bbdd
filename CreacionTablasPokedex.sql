@@ -13,9 +13,9 @@ CREATE TABLE IF NOT EXISTS habilidades (
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	nombre VARCHAR(20) NOT NULL UNIQUE,
 	descripcion VARCHAR(500),
-	es_unitaria BOOLEAN DEFAULT TRUE,
-	es_doble BOOLEAN DEFAULT FALSE,
-	es_oculta BOOLEAN DEFAULT FALSE,
+	efecto_visual VARCHAR(100),
+	efecto_sonoro VARCHAR(100),
+	es_unica BOOLEAN DEFAULT FALSE,
 	afecta_a ENUM('Uno mismo', 'Oponente', 'Otros'),
 	categoria_efecto VARCHAR(30)
 );
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS regiones (
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	nombre ENUM('Kanto', 'Johto', 'Hoenn', 'Sinnoh') NOT NULL UNIQUE,
 	iniciales ENUM('Charmander, Squirtle y Bulbasaur', 'Cyndaquil, Totodile y Chikorita', 'Torchic, Mudkip y Treecko', 'Chimchar, Piplup y Turtwig'),
-	villanos ENUM('Team Rocket', 'Equipo Magma', 'Equipo Aqua', 'Equipo Galaxia'),
+	villanos ENUM('Team Rocket', 'Equipo Magma o Aqua', 'Equipo Galaxia'),
 	profesor ENUM('Oak', 'Elm', 'Abedul', 'Serbal'),
 	videojuego_origen ENUM('Pokémon Rojo y Verde', 'Pokémon Plata y Oro', 'Pokémon Rubí y Zafiro', 'Pokémon Diamante y Perla'),
 	fecha_lanzamiento DATE,
@@ -53,8 +53,6 @@ CREATE TABLE IF NOT EXISTS pokemon (
 	generacion ENUM('Primera', 'Segunda', 'Tercera', 'Cuarta'),
 	tiene_evolucion BOOLEAN,
 	descripcion VARCHAR (500),
-	id_habilidad INT UNSIGNED,
-	FOREIGN KEY (id_habilidad) REFERENCES habilidades(id),
 	id_region INT UNSIGNED,
 	FOREIGN KEY (id_region) REFERENCES regiones(id),
 	id_evoluciona_de INT UNSIGNED,
@@ -63,6 +61,7 @@ CREATE TABLE IF NOT EXISTS pokemon (
 
 CREATE TABLE IF NOT EXISTS pokemon_movimiento (
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	nivel_aprendizaje INT UNSIGNED DEFAULT 1,
 	id_pokemon INT UNSIGNED,
 	FOREIGN KEY (id_pokemon) REFERENCES pokemon(id),
 	id_movimiento INT UNSIGNED,
@@ -76,3 +75,19 @@ CREATE TABLE IF NOT EXISTS pokemon_ruta (
 	id_ruta INT UNSIGNED,
 	FOREIGN KEY (id_ruta) REFERENCES rutas(id)
 );
+
+CREATE TABLE IF NOT EXISTS pokemon_habilidad (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	tipo_ranura ENUM('Primaria', 'Secundaria', 'Oculta') NOT NULL DEFAULT 'Primaria',
+	id_pokemon INT UNSIGNED,
+	FOREIGN KEY (id_pokemon) REFERENCES pokemon(id),
+	id_habilidad INT UNSIGNED,
+	FOREIGN KEY (id_habilidad) REFERENCES habilidades(id)
+);
+
+
+
+
+
+
+
