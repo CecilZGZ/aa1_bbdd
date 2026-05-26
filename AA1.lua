@@ -6,3 +6,11 @@ regiones[#id, nombre, iniciales, villanos, profesor, videojuego_origen, fecha_la
 pokemon_movimiento[#id, nivel_aprendizaje, -id_pokemon, -id_movimiento]
 pokemon_ruta[#id, -id_pokemon, -id_ruta]
 pokemon_habilidad[#id, -id_pokemon, -id_habilidad, tipo_ranura]
+
+-- Herencia
+
+objetos[#id, nombre, precio]
+capturas[#id, probabilidad_captura, -id_objeto]
+curaciones[#id, cantidad_ps, -id_objeto]
+pokemon_captura[#id, -id_pokemon, -id_captura]
+pokemon_curacion[#id, -id_pokemon, -id_curacion]
